@@ -3,8 +3,8 @@ WORKDIR /app
 COPY go.mod ./
 COPY go.sum ./
 
-#RUN cp -R /internal/workspaces/source/.ssh /root/.ssh/
-#RUN chmod 700 /root/.ssh/ ;chmod -R 400 /root/.ssh/*
+RUN cp -R /internal/workspaces/source/.ssh /root/.ssh/
+RUN chmod 700 /root/.ssh/ ;chmod -R 400 /root/.ssh/*
 COPY .gitconfig /root/.gitconfig
 
 
@@ -16,5 +16,5 @@ RUN pwd ; ls -l /app/main
 
 #FROM yauritux/busybox-curl  as runner
 FROM alpine as runner
-COPY --from=builder /app/maine .
+COPY --from=builder /app/main .
 ENTRYPOINT [ "./main" ]
